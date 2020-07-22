@@ -1,4 +1,20 @@
 describe('Bubble Sort', function() {
+  beforeEach(function() {
+    spyOn(window, 'sort').and.callThrough();
+    spyOn(window, 'compare').and.callThrough();
+  });
+
+  it('should compare at most 2n times', function() {
+    const input = [9, 8, 7, 1, 0];
+    bubbleSort(input);
+    expect(window.compare.calls.count()).toBeLessThan(input.length * 2);
+  });
+
+  it('expects Sort to have been called array.length times', function() {
+    bubbleSort([9, 8, 7, 1, 0]);
+    expect(window.sort.calls.count()).toEqual(5);
+  });
+
   it('handles an empty array', function() {
     expect(bubbleSort([])).toEqual([]);
   });
