@@ -4,10 +4,10 @@ describe('Bubble Sort', function() {
     spyOn(window, 'compare').and.callThrough();
   });
 
-  it('should compare at most 2n times', function() {
+  it('should compare n^2 times', function() {
     const input = [9, 8, 7, 1, 0];
     bubbleSort(input);
-    expect(window.compare.calls.count()).toBeLessThan(input.length * 2);
+    expect(window.compare.calls.count()).toBeLessThan(input.length * input.length);
   });
 
   it('expects Sort to have been called array.length times', function() {
